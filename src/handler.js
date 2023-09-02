@@ -36,6 +36,8 @@ const addQuoteHandler = (request, h) => {
 
 };
 
+// const getAllQuotesHandler = () => (quotes);
+
 const getAllQuotesHandler = () => ({
   status: 'success',
   data: {
@@ -48,6 +50,10 @@ const getQuoteByIdHandler = (request, h) => {
  
   const quote = quotes.filter((n) => n.id === id)[0];
  
+  // if (quote !== undefined) {
+  //   return quote;
+  // }
+
   if (quote !== undefined) {
     return {
       status: 'success',
