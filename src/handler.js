@@ -9,7 +9,7 @@ const addQuoteHandler = (request, h) => {
   const updatedAt = createdAt;
 
   const newQuote = {
-    quote, author, id, createdAt, updatedAt,
+    quote, author, id, createdAt, updatedAt
   };
 
   quotes.push(newQuote);
@@ -21,7 +21,7 @@ const addQuoteHandler = (request, h) => {
       message: 'Kutipan berhasil ditambahkan',
       data: {
         quoteId: id,
-      },
+      }
     });
     response.code(201);
     return response;
@@ -29,7 +29,7 @@ const addQuoteHandler = (request, h) => {
 
   const response = h.response({
     status: 'fail',
-    message: 'Kutipan gagal ditambahkan',
+    message: 'Kutipan gagal ditambahkan'
   });
   response.code(500);
   return response;
@@ -41,8 +41,8 @@ const addQuoteHandler = (request, h) => {
 const getAllQuotesHandler = () => ({
   status: 'success',
   data: {
-    quotes,
-  },
+    quotes
+  }
 });
 
 const getQuoteByIdHandler = (request, h) => {
@@ -58,14 +58,14 @@ const getQuoteByIdHandler = (request, h) => {
     return {
       status: 'success',
       data: {
-        quote,
-      },
+        quote
+      }
     };
   }
  
   const response = h.response({
     status: 'fail',
-    message: 'Kutipan tidak ditemukan',
+    message: 'Kutipan tidak ditemukan'
   });
   response.code(404);
   return response;
@@ -83,18 +83,18 @@ const editQuoteByIdHandler = (request, h) => {
       ...quotes[index],
       quote,
       author,
-      updatedAt,
+      updatedAt
     };
     const response = h.response({
       status: 'success',
-      message: 'Kutipan berhasil diperbarui',
+      message: 'Kutipan berhasil diperbarui'
     });
     response.code(200);
     return response;
   }
   const response = h.response({
     status: 'fail',
-    message: 'Gagal memperbarui Kutipan. Id tidak ditemukan',
+    message: 'Gagal memperbarui Kutipan. Id tidak ditemukan'
   });
   response.code(404);
   return response;
@@ -109,7 +109,7 @@ const deleteQuoteByIdHandler = (request, h) => {
     quotes.splice(index, 1);
     const response = h.response({
       status: 'success',
-      message: 'Kutipan berhasil dihapus',
+      message: 'Kutipan berhasil dihapus'
     });
     response.code(200);
     return response;
@@ -117,7 +117,7 @@ const deleteQuoteByIdHandler = (request, h) => {
  
  const response = h.response({
     status: 'fail',
-    message: 'Kutipan gagal dihapus. Id tidak ditemukan',
+    message: 'Kutipan gagal dihapus. Id tidak ditemukan'
   });
   response.code(404);
   return response;
