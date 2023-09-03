@@ -1,20 +1,18 @@
 const { nanoid } = require('nanoid');
 const quotes = require('./quotes');
 
+// Add/POST Quote
 const addQuoteHandler = (request, h) => {
   const { quote, author } = request.payload;
-
   const id = nanoid(16);
-  const createdAt = new Date().toISOString();
-  const updatedAt = createdAt;
 
   const newQuote = {
-    quote, author, id, createdAt, updatedAt
+    quote, author, id
   };
 
   quotes.push(newQuote);
 
-  const isSuccess = quotes.filter((quote) => quote.id === id).length > 0;
+  const isSuccess = quotes.filter((q) => q.id === id).length > 0;
   if (isSuccess) {
     const response = h.response({
       status: 'success',
@@ -36,31 +34,16 @@ const addQuoteHandler = (request, h) => {
 
 };
 
-// const getAllQuotesHandler = () => (quotes);
+// GET All Quotes
+const getAllQuotesHandler = () => (quotes);
 
-const getAllQuotesHandler = () => ({
-  status: 'success',
-  data: {
-    quotes
-  }
-});
-
+// GET Quote by Id
 const getQuoteByIdHandler = (request, h) => {
   const { id } = request.params;
+  const quote = quotes.filter((q) => q.id === id)[0];
  
-  const quote = quotes.filter((n) => n.id === id)[0];
- 
-  // if (quote !== undefined) {
-  //   return quote;
-  // }
-
   if (quote !== undefined) {
-    return {
-      status: 'success',
-      data: {
-        quote
-      }
-    };
+    return quote;
   }
  
   const response = h.response({
@@ -71,19 +54,17 @@ const getQuoteByIdHandler = (request, h) => {
   return response;
 };
 
+// Edit/PUT Quote by Id
 const editQuoteByIdHandler = (request, h) => {
-  const { id } = request.params;
- 
   const { quote, author } = request.payload;
-  const updatedAt = new Date().toISOString();
-  const index = quotes.findIndex((quote) => quote.id === id);
+  const { id } = request.params;
+  const index = quotes.findIndex((q) => q.id === id);
   
   if (index !== -1) {
     quotes[index] = {
       ...quotes[index],
       quote,
-      author,
-      updatedAt
+      author
     };
     const response = h.response({
       status: 'success',
@@ -100,10 +81,10 @@ const editQuoteByIdHandler = (request, h) => {
   return response;
 };
 
+// DELETE Quote by Id
 const deleteQuoteByIdHandler = (request, h) => {
   const { id } = request.params;
- 
-  const index = quotes.findIndex((quote) => quote.id === id);
+  const index = quotes.findIndex((q) => q.id === id);
  
   if (index !== -1) {
     quotes.splice(index, 1);
@@ -123,4 +104,10 @@ const deleteQuoteByIdHandler = (request, h) => {
   return response;
 };
 
-module.exports = { addQuoteHandler, getAllQuotesHandler, getQuoteByIdHandler, editQuoteByIdHandler, deleteQuoteByIdHandler };
+module.exports = { 
+  addQuoteHandler, 
+  getAllQuotesHandler, 
+  getQuoteByIdHandler, 
+  editQuoteByIdHandler, 
+  deleteQuoteByIdHandler 
+};

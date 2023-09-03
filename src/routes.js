@@ -1,10 +1,16 @@
-const { addQuoteHandler, getAllQuotesHandler, getQuoteByIdHandler, editQuoteByIdHandler, deleteQuoteByIdHandler } = require('./handler');
+const { 
+  addQuoteHandler, 
+  getAllQuotesHandler, 
+  getQuoteByIdHandler, 
+  editQuoteByIdHandler, 
+  deleteQuoteByIdHandler 
+} = require('./handler');
 
 const routes = [
   {
     method: 'GET',
     path: '/',
-    handler: (request, h) => {
+    handler: () => {
       return 'Hello World!.'
     }
   },
