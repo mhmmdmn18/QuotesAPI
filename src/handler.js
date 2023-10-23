@@ -7,7 +7,7 @@ const addQuoteHandler = (request, h) => {
   const id = nanoid(16);
 
   const newQuote = {
-    quote, author, id
+    quote, author, id,
   };
 
   quotes.push(newQuote);
@@ -27,7 +27,7 @@ const addQuoteHandler = (request, h) => {
 
   const response = h.response({
     status: 'fail',
-    message: 'Kutipan gagal ditambahkan'
+    message: 'Kutipan gagal ditambahkan',
   });
   response.code(500);
   return response;
@@ -48,7 +48,7 @@ const getQuoteByIdHandler = (request, h) => {
  
   const response = h.response({
     status: 'fail',
-    message: 'Kutipan tidak ditemukan'
+    message: 'Kutipan tidak ditemukan',
   });
   response.code(404);
   return response;
@@ -64,18 +64,18 @@ const editQuoteByIdHandler = (request, h) => {
     quotes[index] = {
       ...quotes[index],
       quote,
-      author
+      author,
     };
     const response = h.response({
       status: 'success',
-      message: 'Kutipan berhasil diperbarui'
+      message: 'Kutipan berhasil diperbarui',
     });
     response.code(200);
     return response;
   }
   const response = h.response({
     status: 'fail',
-    message: 'Gagal memperbarui Kutipan. Id tidak ditemukan'
+    message: 'Gagal memperbarui Kutipan. Id tidak ditemukan',
   });
   response.code(404);
   return response;
@@ -90,15 +90,15 @@ const deleteQuoteByIdHandler = (request, h) => {
     quotes.splice(index, 1);
     const response = h.response({
       status: 'success',
-      message: 'Kutipan berhasil dihapus'
+      message: 'Kutipan berhasil dihapus',
     });
     response.code(200);
     return response;
   }
  
- const response = h.response({
+  const response = h.response({
     status: 'fail',
-    message: 'Kutipan gagal dihapus. Id tidak ditemukan'
+    message: 'Kutipan gagal dihapus. Id tidak ditemukan',
   });
   response.code(404);
   return response;
@@ -109,5 +109,5 @@ module.exports = {
   getAllQuotesHandler, 
   getQuoteByIdHandler, 
   editQuoteByIdHandler, 
-  deleteQuoteByIdHandler 
+  deleteQuoteByIdHandler,
 };

@@ -3,7 +3,7 @@ const {
   getAllQuotesHandler, 
   getQuoteByIdHandler, 
   editQuoteByIdHandler, 
-  deleteQuoteByIdHandler 
+  deleteQuoteByIdHandler,
 } = require('./handler');
 
 const routes = [
@@ -11,33 +11,33 @@ const routes = [
     method: 'GET',
     path: '/',
     handler: () => {
-      return 'Hello World!.'
+      return 'Hello World!';
     }
   },
   {
     method: 'POST',
     path: '/quotes',
-    handler: addQuoteHandler
+    handler: addQuoteHandler,
   },
   {
     method: 'GET',
     path: '/quotes',
-    handler: getAllQuotesHandler
+    handler: getAllQuotesHandler,
   },
   {
     method: 'GET',
     path: '/quotes/{id}',
-    handler: getQuoteByIdHandler
+    handler: getQuoteByIdHandler,
   },
   {
     method: 'PUT',
     path: '/quotes/{id}',
-    handler: editQuoteByIdHandler
+    handler: editQuoteByIdHandler,
   },
   {
     method: 'DELETE',
     path: '/quotes/{id}',
-    handler: deleteQuoteByIdHandler
+    handler: deleteQuoteByIdHandler,
   }
 ];
  
